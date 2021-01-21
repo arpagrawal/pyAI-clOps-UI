@@ -9,6 +9,7 @@ export default {
       search: '',
       modelList: [],
       displayError: false,
+      isDataLoaded: false,
     };
   },
   directives: {},
@@ -21,6 +22,9 @@ export default {
       }
       return [];
     },
+    noResults() {
+      return this.filteredList.length === 0;
+    },
   },
   mounted() {},
   created() {
@@ -32,6 +36,7 @@ export default {
   methods: {
     handleModelDataResponse(res) {
       this.modelList = res.data.Models;
+      this.isDataLoaded = true;
     },
     handleModelDataError() {
       this.displayError = true;
